@@ -57,27 +57,15 @@ describe('SearchFilters', () => {
 
   it('renders all filter components', () => {
     render(<SearchFilters {...defaultProps} />);
-
-    // Search input
     expect(screen.getByPlaceholderText('Search books by title, author, or description...')).toBeInTheDocument();
-
-    // Search button
     expect(screen.getByText('Search')).toBeInTheDocument();
-
-    // Genre dropdown
     expect(screen.getByDisplayValue('All Genres')).toBeInTheDocument();
-
-    // Author dropdown
     expect(screen.getByDisplayValue('All Authors')).toBeInTheDocument();
-
-    // Rating inputs
     expect(screen.getByPlaceholderText('Min Rating')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Max Rating')).toBeInTheDocument();
 
-    // Clear filters button
     expect(screen.getByText('Clear All Filters')).toBeInTheDocument();
 
-    // Limit selector
     expect(screen.getByText('Show:')).toBeInTheDocument();
     expect(screen.getByText('per page')).toBeInTheDocument();
   });
@@ -114,8 +102,7 @@ describe('SearchFilters', () => {
 
     const genreSelect = screen.getByDisplayValue('All Genres');
 
-    // Check that all genres are available as options
-    expect(genreSelect.children).toHaveLength(5); // "All Genres" + 4 genres
+    expect(genreSelect.children).toHaveLength(5);
     expect(screen.getByRole('option', { name: 'Fiction' })).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'Mystery' })).toBeInTheDocument();
   });
@@ -134,8 +121,7 @@ describe('SearchFilters', () => {
 
     const authorSelect = screen.getByDisplayValue('All Authors');
 
-    // Check that all authors are available as options
-    expect(authorSelect.children).toHaveLength(4); // "All Authors" + 3 authors
+    expect(authorSelect.children).toHaveLength(4);
     expect(screen.getByRole('option', { name: 'J.K. Rowling' })).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'Stephen King' })).toBeInTheDocument();
   });
@@ -152,7 +138,6 @@ describe('SearchFilters', () => {
   it('renders status options correctly', () => {
     render(<SearchFilters {...defaultProps} />);
 
-    // Status select should contain the status options
     expect(screen.getByRole('option', { name: 'All Status' })).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'Available' })).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'Checked Out' })).toBeInTheDocument();
@@ -197,7 +182,6 @@ describe('SearchFilters', () => {
   it('handles sort changes correctly', () => {
     render(<SearchFilters {...defaultProps} />);
 
-    // Find sort selects
     const sortSelects = screen.getAllByRole('combobox');
     const sortBySelect = sortSelects.find(select =>
       select.querySelector('option[value="title"]'),
@@ -274,11 +258,9 @@ describe('SearchFilters', () => {
   it('has proper form structure and accessibility', () => {
     render(<SearchFilters {...defaultProps} />);
 
-    // Check for form element
     const form = document.querySelector('form');
     expect(form).toBeInTheDocument();
 
-    // Check for proper label association
     const limitLabel = screen.getByText('Show:');
     expect(limitLabel).toHaveAttribute('for', 'limit');
 
@@ -294,8 +276,6 @@ describe('SearchFilters', () => {
       statusOptions: [],
       sortOptions: [],
     };
-
-    // Should not crash
     expect(() => render(<SearchFilters {...propsWithEmptyArrays} />)).not.toThrow();
   });
 });

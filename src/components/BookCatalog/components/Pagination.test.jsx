@@ -1,8 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import Pagination from './Pagination';
-
-// Mock window.innerWidth for responsive behavior
 Object.defineProperty(window, 'innerWidth', {
   writable: true,
   configurable: true,
@@ -22,13 +20,12 @@ describe('Pagination', () => {
 
   beforeEach(() => {
     mockOnGoToPage.mockClear();
-    window.innerWidth = 1024; // Reset to desktop width
+    window.innerWidth = 1024;
   });
 
   it('renders pagination controls', () => {
     render(<Pagination {...defaultProps} />);
 
-    // Should have Previous and Next buttons
     expect(screen.getByText('Previous')).toBeInTheDocument();
     expect(screen.getByText('Next')).toBeInTheDocument();
   });
@@ -90,7 +87,6 @@ describe('Pagination', () => {
     const props = { ...defaultProps, currentPage: 10, totalPages: 20 };
     render(<Pagination {...props} />);
 
-    // Should show ellipsis - there can be multiple
     const ellipsis = screen.getAllByText('...');
     expect(ellipsis.length).toBeGreaterThan(0);
   });
@@ -99,19 +95,14 @@ describe('Pagination', () => {
     const props = { ...defaultProps, currentPage: 10, totalPages: 20 };
     render(<Pagination {...props} />);
 
-    // Should show page 1 button
     expect(screen.getByText('1')).toBeInTheDocument();
-    // Should show last page button
     expect(screen.getByText('20')).toBeInTheDocument();
   });
 
   it('renders mobile view with limited pages', () => {
-    // Mock mobile width
     window.innerWidth = 500;
 
     render(<Pagination {...defaultProps} />);
-
-    // Mobile view should show Prev/Next with page info
     expect(screen.getByText('← Prev')).toBeInTheDocument();
     expect(screen.getByText('Next →')).toBeInTheDocument();
     expect(screen.getByText('1 of 10')).toBeInTheDocument();
@@ -136,8 +127,6 @@ describe('Pagination', () => {
   it('calculates visible page range correctly', () => {
     const props = { ...defaultProps, currentPage: 5, totalPages: 10 };
     render(<Pagination {...props} />);
-
-    // Should show pages around current page
     expect(screen.getByText('3')).toBeInTheDocument();
     expect(screen.getByText('4')).toBeInTheDocument();
     expect(screen.getByText('5')).toBeInTheDocument();
@@ -153,7 +142,6 @@ describe('Pagination', () => {
     expect(screen.getByText('2')).toBeInTheDocument();
     expect(screen.getByText('3')).toBeInTheDocument();
 
-    // Should not show ellipsis for few pages
     expect(screen.queryByText('...')).not.toBeInTheDocument();
   });
 
@@ -191,7 +179,6 @@ describe('Pagination', () => {
       onGoToPage: mockOnGoToPage,
     };
 
-    // Should not crash
     expect(() => render(<Pagination {...props} />)).not.toThrow();
   });
 });

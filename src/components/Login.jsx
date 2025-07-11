@@ -33,7 +33,6 @@ const Login = ({ setExistingUser }) => {
     <div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4'>
       <div className='max-w-md w-full space-y-8'>
         <div className='bg-white rounded-2xl shadow-xl p-8'>
-          {/* Header */}
           <div className='text-center mb-8'>
             <div className='mx-auto h-12 w-12 bg-blue-500 rounded-full flex items-center justify-center mb-4'>
               <svg className='h-6 w-6 text-white' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -43,8 +42,6 @@ const Login = ({ setExistingUser }) => {
             <h2 className='text-3xl font-bold text-gray-900 mb-2'>Welcome Back</h2>
             <p className='text-gray-600'>Sign in to your book club account</p>
           </div>
-
-          {/* Form */}
           <form onSubmit={handleSubmit} className='space-y-6'>
             <div>
               <label className='block text-sm font-medium text-gray-700 mb-2'>
@@ -80,7 +77,7 @@ const Login = ({ setExistingUser }) => {
             >
               Sign In
             </button>
-          </form>          {/* Footer */}
+          </form>
           <div className='mt-8 text-center'>
             <p className='text-gray-600'>
               Don't have an account?{' '}

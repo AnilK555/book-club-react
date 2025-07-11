@@ -24,8 +24,6 @@ describe('LoadingSpinner', () => {
 
   it('has spinner element with correct classes', () => {
     render(<LoadingSpinner />);
-
-    // Find the spinner div
     const spinner = screen.getByText('Loading books...').previousElementSibling;
     expect(spinner).toHaveClass(
       'inline-block',
@@ -50,14 +48,12 @@ describe('LoadingSpinner', () => {
   it('has proper accessibility for screen readers', () => {
     render(<LoadingSpinner />);
 
-    // Should have loading text for screen readers
     expect(screen.getByText('Loading books...')).toBeInTheDocument();
   });
 
   it('renders spinner correctly', () => {
     render(<LoadingSpinner />);
 
-    // Should have both spinner and text
     expect(screen.getByText('Loading books...')).toBeInTheDocument();
     const container = screen.getByText('Loading books...').parentElement;
     expect(container.querySelector('.animate-spin')).toBeInTheDocument();
