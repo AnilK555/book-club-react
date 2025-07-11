@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+input, button, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid #ccc ;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* Custom utilities for text truncation */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
